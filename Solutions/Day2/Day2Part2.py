@@ -1,5 +1,5 @@
 # Must input a correct answer for part 1 before part 2 can be viewed
-# https://adventofcode.com/2025/day/1#part2
+# https://adventofcode.com/2025/day/2#part2
 
 def solve(fileName: str):
     ids = [list(map(lambda x: int(x),r.split("-"))) for r in open(fileName,"r").read().strip().replace("\n","").split(",")]
