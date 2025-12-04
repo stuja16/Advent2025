@@ -3,21 +3,19 @@
 
 def solve(fileName: str):
     paperRollDiagram = open(fileName,"r").read().strip().split("\n")
-    adjacentCount = [[0] * len(paperRollDiagram[0]) for i in range(len(paperRollDiagram))]
+    adjacentCount = [[0] * len(paperRollDiagram[0]) for _ in range(len(paperRollDiagram))]
     accessibleRolls = 0
 
-    # Create initial count
+    # Create initial count of adjacent rolls
     for r,row in enumerate(paperRollDiagram):
         for c,element in enumerate(row):
-            # Add count to neighboring tiles
-            if element == "@":
+            if element == "@":      # +1 to neighboring tiles' count
                 changeAdjacentCounts(adjacentCount,r,c,1)
-            # If not a paper roll, impossible to be accessible
-            else:
+            else:                   # If not a paper roll, impossible to be accessible
                 adjacentCount[r][c] += 4
 
     # Count accessible rolls
-    newRoll = True      # If we've removed a new roll on this pass
+    newRoll = True      # Have we removed a new roll on this pass?
     while newRoll:
         newRoll = False
         for r,row in enumerate(adjacentCount):
@@ -42,14 +40,13 @@ def changeAdjacentCounts(countList,r,c,delta):
 
 
 def changeCount(countList,r,c,delta):
-    # Avoid wrapping to end of list
-    if r < 0 or c < 0:
+    if r < 0 or c < 0:  # Avoid wrapping to end of list
         return
 
     try:
         countList[r][c] += delta
     except IndexError:
-        pass
+        return
 
 #print(solve("Solutions/Day4/unitTest.txt"))
 print(solve("Solutions/Day4/input.txt"))
