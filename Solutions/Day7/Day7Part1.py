@@ -28,7 +28,6 @@ def solve(fileName: str) -> int:
 
             break
 
-
     return len(splitters)
 
 # print(solve("Solutions/Day7/unitTest.txt"))
